@@ -51,6 +51,23 @@ pub fn sea_value_to_json_value(value: &Value) -> Json {
         Value::MacAddress(None) => Json::Null,
         #[cfg(feature = "postgres-range")]
         Value::Range(None) => Json::Null,
+        #[cfg(feature = "with-chrono")]
+        Value::ChronoDate(None)
+        | Value::ChronoTime(None)
+        | Value::ChronoDateTime(None)
+        | Value::ChronoDateTimeWithTimeZone(None)
+        | Value::ChronoDateTimeUtc(None)
+        | Value::ChronoDateTimeLocal(None) => Json::Null,
+        #[cfg(feature = "with-time")]
+        Value::TimeDate(None)
+        | Value::TimeTime(None)
+        | Value::TimeDateTime(None)
+        | Value::TimeDateTimeWithTimeZone(None) => Json::Null,
+        #[cfg(feature = "with-jiff")]
+        Value::JiffDate(None)
+        | Value::JiffTime(None)
+        | Value::JiffDateTime(None)
+        | Value::JiffTimestamp(None) => Json::Null,
         Value::Bool(Some(b)) => Json::Bool(*b),
         Value::TinyInt(Some(v)) => (*v).into(),
         Value::SmallInt(Some(v)) => (*v).into(),
