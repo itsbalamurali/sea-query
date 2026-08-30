@@ -786,7 +786,9 @@ impl Value {
 
             #[cfg(feature = "postgres-postgis")]
             #[cfg_attr(docsrs, doc(cfg(feature = "postgres-postgis")))]
-            Self::Geometry(_) => Self::Geometry(Some(Box::new(geo_types::Geometry::Point(geo_types::Point::new(0.0, 0.0))))),
+            Self::Geometry(_) => Self::Geometry(Some(Box::new(geo_types::Geometry::Point(
+                geo_types::Point::new(0.0, 0.0),
+            )))),
         }
     }
 

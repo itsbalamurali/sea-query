@@ -2613,13 +2613,10 @@ fn test_postgis_geo_types_integration() {
     let point = geo_types::Point::new(12.34, 56.78);
     let val: Value = point.into();
 
-    let query = Query::select()
-        .expr(Expr::val(val))
-        .to_owned();
+    let query = Query::select().expr(Expr::val(val)).to_owned();
 
     assert_eq!(
         query.to_string(PostgresQueryBuilder),
         r#"SELECT ST_GeomFromText('POINT(12.34 56.78)')"#
     );
-}
 }
