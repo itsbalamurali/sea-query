@@ -43,15 +43,25 @@ pub enum PgFunc {
     AdvisoryXactLockShared,
     TryAdvisoryXactLock,
     TryAdvisoryXactLockShared,
+    #[cfg(feature = "postgres-postgis")]
     StDwithin,
+    #[cfg(feature = "postgres-postgis")]
     StCovers,
+    #[cfg(feature = "postgres-postgis")]
     StIntersects,
+    #[cfg(feature = "postgres-postgis")]
     StDistance,
+    #[cfg(feature = "postgres-postgis")]
     StContains,
+    #[cfg(feature = "postgres-postgis")]
     StAsGeojson,
+    #[cfg(feature = "postgres-postgis")]
     StGeomFromGeojson,
+    #[cfg(feature = "postgres-postgis")]
     StMakePoint,
+    #[cfg(feature = "postgres-postgis")]
     StMakeLine,
+    #[cfg(feature = "postgres-postgis")]
     StSetSrid,
 }
 
@@ -795,6 +805,7 @@ impl PgFunc {
     }
 
     /// Call PostGIS `ST_DWITHIN` function. Postgres only.
+    #[cfg(feature = "postgres-postgis")]
     pub fn st_dwithin<G1, G2, D>(geom1: G1, geom2: G2, distance: D) -> FunctionCall
     where
         G1: Into<Expr>,
@@ -805,6 +816,7 @@ impl PgFunc {
     }
 
     /// Call PostGIS `ST_COVERS` function. Postgres only.
+    #[cfg(feature = "postgres-postgis")]
     pub fn st_covers<G1, G2>(geom1: G1, geom2: G2) -> FunctionCall
     where
         G1: Into<Expr>,
@@ -814,6 +826,7 @@ impl PgFunc {
     }
 
     /// Call PostGIS `ST_INTERSECTS` function. Postgres only.
+    #[cfg(feature = "postgres-postgis")]
     pub fn st_intersects<G1, G2>(geom1: G1, geom2: G2) -> FunctionCall
     where
         G1: Into<Expr>,
@@ -823,6 +836,7 @@ impl PgFunc {
     }
 
     /// Call PostGIS `ST_DISTANCE` function. Postgres only.
+    #[cfg(feature = "postgres-postgis")]
     pub fn st_distance<G1, G2>(geom1: G1, geom2: G2) -> FunctionCall
     where
         G1: Into<Expr>,
@@ -832,6 +846,7 @@ impl PgFunc {
     }
 
     /// Call PostGIS `ST_CONTAINS` function. Postgres only.
+    #[cfg(feature = "postgres-postgis")]
     pub fn st_contains<G1, G2>(geom1: G1, geom2: G2) -> FunctionCall
     where
         G1: Into<Expr>,
@@ -841,6 +856,7 @@ impl PgFunc {
     }
 
     /// Call PostGIS `ST_ASGEOJSON` function. Postgres only.
+    #[cfg(feature = "postgres-postgis")]
     pub fn st_as_geojson<G>(geom: G) -> FunctionCall
     where
         G: Into<Expr>,
@@ -849,6 +865,7 @@ impl PgFunc {
     }
 
     /// Call PostGIS `ST_GEOMFROMGEOJSON` function. Postgres only.
+    #[cfg(feature = "postgres-postgis")]
     pub fn st_geom_from_geojson<G>(geojson: G) -> FunctionCall
     where
         G: Into<Expr>,
@@ -857,6 +874,7 @@ impl PgFunc {
     }
 
     /// Call PostGIS `ST_MAKEPOINT` function. Postgres only.
+    #[cfg(feature = "postgres-postgis")]
     pub fn st_make_point<X, Y>(x: X, y: Y) -> FunctionCall
     where
         X: Into<Expr>,
@@ -866,6 +884,7 @@ impl PgFunc {
     }
 
     /// Call PostGIS `ST_MAKELINE` function. Postgres only.
+    #[cfg(feature = "postgres-postgis")]
     pub fn st_make_line<P1, P2>(p1: P1, p2: P2) -> FunctionCall
     where
         P1: Into<Expr>,
@@ -875,6 +894,7 @@ impl PgFunc {
     }
 
     /// Call PostGIS `ST_SETSRID` function. Postgres only.
+    #[cfg(feature = "postgres-postgis")]
     pub fn st_set_srid<G, S>(geom: G, srid: S) -> FunctionCall
     where
         G: Into<Expr>,

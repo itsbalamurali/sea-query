@@ -2592,6 +2592,7 @@ fn test_pgvector_select() {
 }
 
 #[test]
+#[cfg(feature = "postgres-postgis")]
 fn test_postgis_spatial_functions() {
     let query = Query::select()
         .expr(PgFunc::st_as_geojson(PgFunc::st_set_srid(

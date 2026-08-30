@@ -61,6 +61,7 @@ attr = ["sea-query-derive"]
 hashable-value = ["ordered-float"]
 postgres-array = []
 postgres-vector = ["pgvector"]
+postgres-postgis = []
 postgres-interval = []
 postgres-range = ["sea-query-postgres-types/range"]
 serde = [
@@ -106,6 +107,7 @@ all-types = [
     "postgres-array",
     "postgres-interval",
     "postgres-vector",
+    "postgres-postgis",
     "postgres-range",
     "with-chrono",
     "with-json",
