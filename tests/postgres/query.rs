@@ -2590,3 +2590,18 @@ fn test_pgvector_select() {
         r#"SELECT "character" FROM "character" WHERE "character" = '[1,2]'"#
     );
 }
+
+#[test]
+fn test_postgis_spatial_functions() {
+    let query = Query::select()
+        .expr(PgFunc::st_as_geojson(PgFunc::st_set_srid(
+            PgFunc::st_make_point(12.34, 56.78),
+            4326,
+        )))
+        .to_owned();
+
+    assert_eq!(
+        query.to_string(PostgresQueryBuilder),
+        r#"SELECT ST_ASGEOJSON(ST_SETSRID(ST_MAKEPOINT(12.34, 56.78), 4326))"#
+    );
+}
